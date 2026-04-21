@@ -8,12 +8,9 @@ def cosine_similarity(a, b):
     # Write code here
     a = np.asarray(a)
     b = np.asarray(b)
-    norm_a = np.linalg.norm(a)
-    norm_b = np.linalg.norm(b)
-
-    if norm_a ==  0 or norm_b == 0 :
-        return 0 
-    else:    
-        cosine_similarity = np.dot(a,b) / ( norm_a * norm_b )
-
-    return cosine_similarity
+    deno = np.linalg.norm(a) * np.linalg.norm(b)
+    if deno != 0:
+        cos_similarity = np.dot(a , b) / deno
+    else:
+        return 0
+    return float(cos_similarity)
