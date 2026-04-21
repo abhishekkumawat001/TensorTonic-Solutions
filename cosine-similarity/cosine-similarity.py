@@ -12,5 +12,5 @@ def cosine_similarity(a, b):
     if deno != 0:
         cos_similarity = np.dot(a , b) / deno
     else:
-        return 0
+        return 0.0
     return float(cos_similarity)
