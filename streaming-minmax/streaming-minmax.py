@@ -1,0 +1,25 @@
+import numpy as np
+
+def streaming_minmax_init(D):
+    """
+    Initialize state dict with min, max arrays of shape (D,).
+    """
+    # Write code here
+    return {
+        "min": np.full(D, np.inf),
+        "max": np.full(D, -np.inf)
+    }
+
+def streaming_minmax_update(state, X_batch, eps=1e-8):
+    """
+    Update state's min/max with X_batch, return normalized batch.
+    """
+    # Write code here
+    # Update running min and max
+    state["min"] = np.minimum(state["min"], np.min(X_batch, axis=0))
+    state["max"] = np.maximum(state["max"], np.max(X_batch, axis=0))
+
+    # Normalize batch using current running statistics
+    X_norm = (X_batch - state["min"]) / (state["max"] - state["min"] + eps)
+
+    return X_norm
